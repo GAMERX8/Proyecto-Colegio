@@ -1,0 +1,378 @@
+/* css/videos.css - Estilos de la TV Retro de Videos (Sonia) */
+
+.videos-container {
+  width: 100%;
+  max-width: 1000px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 40px;
+}
+
+/* TV Retro Set */
+.retro-tv-cabinet {
+  flex: 1.3;
+  background: #FF9800; /* Naranja vibrante de gabinete */
+  border: 8px solid #333333;
+  border-radius: 45px;
+  box-shadow: 0 16px 0px #C66900, 0 20px 25px rgba(0, 0, 0, 0.15);
+  padding: 25px;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 620px;
+  min-height: 440px;
+  background-image: radial-gradient(circle at 10% 10%, rgba(255,255,255,0.4) 0%, transparent 40%);
+}
+
+/* Antena de la TV */
+.retro-tv-cabinet::before {
+  content: '';
+  position: absolute;
+  top: -45px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 12px;
+  height: 45px;
+  background: #333333;
+  border-radius: 6px;
+  z-index: -1;
+}
+
+.tv-antenna-left, .tv-antenna-right {
+  position: absolute;
+  top: -110px;
+  width: 6px;
+  height: 120px;
+  background: #B0BEC5;
+  border: 3px solid #333333;
+  border-radius: 5px;
+  transform-origin: bottom center;
+  z-index: -2;
+}
+
+.tv-antenna-left {
+  left: calc(50% - 20px);
+  transform: rotate(-35deg);
+}
+
+.tv-antenna-right {
+  left: calc(50% + 14px);
+  transform: rotate(35deg);
+}
+
+.tv-antenna-ball {
+  position: absolute;
+  top: -116px;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: #FF5252;
+  border: 3px solid #333333;
+}
+.tv-antenna-left + .tv-antenna-ball { left: calc(50% - 63px); }
+.tv-antenna-right + .tv-antenna-ball { left: calc(50% + 47px); }
+
+/* Pantalla CRT de la TV */
+.tv-screen-wrapper {
+  background: #3E2723;
+  border: 7px solid #333333;
+  border-radius: 30px;
+  padding: 10px;
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0 10px 20px rgba(0,0,0,0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.tv-screen {
+  width: 100%;
+  height: 290px;
+  background: #000000;
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background 0.3s;
+}
+
+/* Efecto CRT de la pantalla apagada/prendida */
+.tv-screen.tv-off {
+  background: #111111;
+}
+
+.tv-screen.tv-off iframe {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.tv-screen.tv-off::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 8px;
+  height: 8px;
+  background: #FFFFFF;
+  border-radius: 50%;
+  box-shadow: 0 0 10px #FFFFFF, 0 0 30px #FFFFFF;
+  animation: crtPowerOff 0.4s forwards ease-out;
+}
+
+@keyframes crtPowerOff {
+  0% { width: 100%; height: 100%; border-radius: 20px; opacity: 1; }
+  50% { width: 100%; height: 3px; border-radius: 2px; }
+  100% { width: 0px; height: 0px; opacity: 0; }
+}
+
+.tv-screen.tv-on::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 4px, 6px 100%;
+  pointer-events: none;
+  z-index: 4;
+}
+
+.tv-screen iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  border-radius: 14px;
+  z-index: 2;
+  transition: opacity 0.3s ease;
+}
+
+/* Ruido de estática cuando cambia de canal */
+.tv-static-noise {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-radial-gradient(circle, #2c2c2c, #404040 2px, #111 4px);
+  opacity: 0;
+  z-index: 3;
+  pointer-events: none;
+  transition: opacity 0.15s;
+}
+
+.tv-static-noise.active {
+  opacity: 0.85;
+}
+
+/* Panel de Controles Físicos */
+.tv-controls-panel {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #E0F7FA;
+  border: 5px solid #333333;
+  border-radius: 25px;
+  padding: 12px 25px;
+  box-shadow: inset 0 -4px 0px rgba(0,0,0,0.1);
+}
+
+.tv-speakers {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  width: 80px;
+}
+
+.speaker-line {
+  height: 5px;
+  background: #333333;
+  border-radius: 2.5px;
+  width: 100%;
+}
+.speaker-line:nth-child(even) { width: 85%; }
+
+.tv-knob-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.tv-knob {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: #FFE082;
+  border: 4px solid #333333;
+  box-shadow: 0 4px 0px #333333;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.tv-knob:active {
+  transform: scale(0.95);
+}
+
+.tv-knob::before {
+  content: '';
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 6px;
+  height: 12px;
+  background: #333333;
+  border-radius: 3px;
+}
+
+.btn-power-tv {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: #FF5252;
+  border: 4px solid #333333;
+  box-shadow: 0 4px 0px #333333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.btn-power-tv:active {
+  transform: translateY(4px);
+  box-shadow: 0 0px 0px #333333;
+}
+
+.btn-power-tv svg {
+  width: 22px;
+  height: 22px;
+  fill: #FFFFFF;
+}
+
+/* Selector de Canales (Lado Derecho de la TV) */
+.tv-channels-panel {
+  flex: 0.7;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  max-width: 320px;
+  width: 100%;
+}
+
+.channels-title {
+  font-family: var(--font-title);
+  font-size: 1.6rem;
+  font-weight: 800;
+  text-align: center;
+  color: #333333;
+  background: #FFFFFF;
+  border: 4px solid #333333;
+  padding: 6px 15px;
+  border-radius: 20px;
+  box-shadow: 0 6px 0px #333333;
+  text-transform: uppercase;
+}
+
+.channel-btn {
+  background: #FFFFFF;
+  border: 4px solid #333333;
+  border-radius: 25px;
+  padding: 12px 18px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-align: left;
+  box-shadow: 0 6px 0px #333333;
+  transition: transform 0.15s, box-shadow 0.15s;
+}
+
+.channel-btn:hover {
+  transform: translateY(-4px) rotate(-1deg);
+  box-shadow: 0 10px 0px #333333;
+}
+
+.channel-btn:active {
+  transform: translateY(2px);
+  box-shadow: 0 4px 0px #333333;
+}
+
+.channel-btn.active {
+  background: #3EAEFF;
+  color: #FFFFFF;
+  box-shadow: 0 6px 0px #0060A0;
+}
+
+.channel-btn.active .channel-number {
+  background: #FFFFFF;
+  color: #3EAEFF;
+  border-color: #0060A0;
+}
+
+.channel-number {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: #333333;
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-title);
+  font-size: 1.3rem;
+  font-weight: 800;
+  border: 2px solid #333333;
+  flex-shrink: 0;
+}
+
+.channel-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.channel-name {
+  font-family: var(--font-title);
+  font-size: 1.2rem;
+  font-weight: 800;
+}
+
+.channel-desc {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+/* Responsividad de Videos */
+@media (max-width: 900px) {
+  .videos-container {
+    flex-direction: column;
+    gap: 30px;
+    padding: 0 10px;
+  }
+  
+  .retro-tv-cabinet {
+    width: 100%;
+    min-height: auto;
+  }
+  
+  .tv-screen {
+    height: 200px;
+  }
+  
+  .tv-channels-panel {
+    max-width: 100%;
+  }
+  
+  .tv-antenna-left, .tv-antenna-right, .tv-antenna-ball {
+    display: none;
+  }
+}

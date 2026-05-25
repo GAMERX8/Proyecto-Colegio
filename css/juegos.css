@@ -1,0 +1,443 @@
+/* css/juegos.css - Estilos del Módulo de Juegos (Deysi) */
+
+.juegos-wrapper {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+/* Selector de Juegos */
+.juegos-selector {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+  width: 100%;
+}
+
+.game-select-card {
+  background: #FFFFFF;
+  border: 5px solid #333333;
+  border-radius: 30px;
+  box-shadow: 0 10px 0px #333333;
+  padding: 20px;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.game-select-card:hover {
+  transform: translateY(-8px) rotate(1.5deg);
+  box-shadow: 0 15px 0px #333333;
+}
+
+.game-select-card:active {
+  transform: translateY(4px);
+  box-shadow: 0 4px 0px #333333;
+}
+
+.game-card-thumb {
+  width: 100%;
+  height: 120px;
+  border-radius: 20px;
+  background: var(--color-bg-sky);
+  border: 4px solid #333333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 3.5rem;
+}
+
+.game-card-title {
+  font-family: var(--font-title);
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #333333;
+}
+
+/* Panel de Contenedor de Juego Activo */
+.active-game-viewport {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: scaleUpGame 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  position: relative;
+}
+
+@keyframes scaleUpGame {
+  from { transform: scale(0.9); opacity: 0; }
+  to { transform: scale(1); opacity: 1; }
+}
+
+.game-header-bar {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.game-hud-item {
+  font-family: var(--font-title);
+  font-size: 1.4rem;
+  font-weight: 800;
+  background: #FFFFFF;
+  border: 4px solid #333333;
+  padding: 6px 20px;
+  border-radius: 25px;
+  box-shadow: 0 5px 0px #333333;
+}
+
+/* ==================== 1. JUEGO DE MEMORIA ==================== */
+.memory-board {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+  max-width: 600px;
+  width: 100%;
+  margin: 20px auto;
+  perspective: 1000px;
+}
+
+.memory-card {
+  aspect-ratio: 1;
+  cursor: pointer;
+  position: relative;
+  transform-style: preserve-3d;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.memory-card.flipped {
+  transform: rotateY(180deg);
+}
+
+.memory-card-face {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 25px;
+  border: 5px solid #333333;
+  backface-visibility: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 6px 0px #333333;
+}
+
+.memory-card-front {
+  background: #FFD41D;
+  background-image: radial-gradient(#FFECB3 20%, transparent 20%);
+  background-size: 12px 12px;
+}
+
+.memory-card-front::after {
+  content: '?';
+  font-family: var(--font-title);
+  font-size: 3rem;
+  font-weight: 900;
+  color: #FFFFFF;
+  text-shadow: -2px -2px 0 #333, 2px -2px 0 #333, -2px 2px 0 #333, 2px 2px 0 #333;
+}
+
+.memory-card-back {
+  background: #FFFFFF;
+  transform: rotateY(180deg);
+}
+
+.memory-card-back svg {
+  width: 70%;
+  height: 70%;
+}
+
+.memory-card.matched {
+  animation: matchPulse 0.4s ease-out;
+}
+
+@keyframes matchPulse {
+  0% { transform: rotateY(180deg) scale(1); }
+  50% { transform: rotateY(180deg) scale(1.1); }
+  100% { transform: rotateY(180deg) scale(1); }
+}
+
+/* ==================== 2. REVIENTA GLOBOS ==================== */
+.balloon-game-area {
+  width: 100%;
+  height: 480px;
+  background: #E3F7FF;
+  border: 6px solid #333333;
+  border-radius: 35px;
+  box-shadow: 0 10px 0px #333333;
+  position: relative;
+  overflow: hidden;
+  cursor: crosshair;
+}
+
+.balloon {
+  position: absolute;
+  bottom: -100px;
+  width: 70px;
+  height: 85px;
+  border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+  border: 4px solid #333333;
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: transform 0.1s;
+}
+
+/* Hilos de globos */
+.balloon::after {
+  content: '';
+  position: absolute;
+  bottom: -15px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 3px;
+  height: 18px;
+  background: #333333;
+}
+
+/* Nudo inferior del globo */
+.balloon::before {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 50%;
+  transform: translateX(-50%) rotate(45deg);
+  width: 8px;
+  height: 8px;
+  background: inherit;
+  border-bottom: 3px solid #333333;
+  border-right: 3px solid #333333;
+}
+
+/* Brillo del globo */
+.balloon-highlight {
+  position: absolute;
+  top: 10px;
+  left: 15px;
+  width: 12px;
+  height: 20px;
+  background: rgba(255,255,255,0.4);
+  border-radius: 50%;
+  transform: rotate(-15deg);
+}
+
+.balloon.popping {
+  transform: scale(1.4);
+  opacity: 0;
+  transition: transform 0.15s ease-out, opacity 0.15s ease-out;
+}
+
+/* Colores de los globos */
+.balloon.balloon-red { background: #FF5252; }
+.balloon.balloon-blue { background: #448AFF; }
+.balloon.balloon-green { background: #69F0AE; }
+.balloon.balloon-yellow { background: #FFD740; }
+.balloon.balloon-orange { background: #FF9100; }
+.balloon.balloon-purple { background: #E040FB; }
+
+/* ==================== 3. PIZARRA MÁGICA ==================== */
+.drawing-workspace {
+  display: flex;
+  gap: 25px;
+  width: 100%;
+}
+
+.drawing-canvas-wrapper {
+  flex: 1;
+  background: #FFFFFF;
+  border: 6px solid #5D4037; /* Marco estilo madera */
+  border-radius: 30px;
+  box-shadow: 0 10px 0px #3E2723;
+  overflow: hidden;
+  height: 420px;
+  position: relative;
+}
+
+#drawing-canvas {
+  width: 100%;
+  height: 100%;
+  display: block;
+  cursor: crosshair;
+}
+
+.drawing-toolbox {
+  width: 150px;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  flex-shrink: 0;
+}
+
+.toolbox-group {
+  background: #FFFFFF;
+  border: 4px solid #333333;
+  border-radius: 20px;
+  padding: 12px;
+  box-shadow: 0 5px 0px #333333;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.toolbox-label {
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  font-weight: 800;
+  text-align: center;
+  color: #555555;
+  border-bottom: 2px dashed #DDD;
+  padding-bottom: 4px;
+  text-transform: uppercase;
+}
+
+/* Tarros de pintura de colores */
+.paint-color-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 8px;
+}
+
+.paint-pot {
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3.5px solid #333333;
+  cursor: pointer;
+  transition: transform 0.1s;
+  position: relative;
+}
+
+.paint-pot:hover {
+  transform: scale(1.1);
+}
+
+.paint-pot.active {
+  transform: scale(1.1);
+}
+
+.paint-pot.active::after {
+  content: '✓';
+  color: white;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+  font-weight: 900;
+  font-size: 1.2rem;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.paint-rainbow {
+  background: linear-gradient(135deg, red, orange, yellow, green, blue, violet);
+}
+
+/* Pinceles */
+.brush-size-grid {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.brush-btn {
+  border-radius: 50%;
+  background: #ECEFF1;
+  border: 3px solid #333333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.1s;
+}
+
+.brush-btn:hover, .brush-btn.active {
+  background: #CFD8DC;
+  transform: scale(1.1);
+}
+
+.brush-btn.brush-sm { width: 24px; height: 24px; }
+.brush-btn.brush-md { width: 32px; height: 32px; }
+.brush-btn.brush-lg { width: 40px; height: 40px; }
+
+.brush-dot {
+  background: #333333;
+  border-radius: 50%;
+}
+.brush-sm .brush-dot { width: 6px; height: 6px; }
+.brush-md .brush-dot { width: 12px; height: 12px; }
+.brush-lg .brush-dot { width: 18px; height: 18px; }
+
+/* Botones de comando */
+.toolbox-btn {
+  font-family: var(--font-title);
+  font-size: 1.1rem;
+  font-weight: 800;
+  padding: 8px 12px;
+  border-radius: 15px;
+  border: 3.5px solid #333333;
+  box-shadow: 0 4px 0px #333333;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  color: white;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.toolbox-btn:active {
+  transform: translateY(3px);
+  box-shadow: 0 1px 0px #333333;
+}
+
+.btn-clear { background: #FF5252; }
+.btn-undo { background: #FF9100; }
+
+/* Responsividad de Juegos */
+@media (max-width: 800px) {
+  .juegos-selector {
+    grid-template-columns: 1fr;
+    max-width: 400px;
+  }
+  
+  .memory-board {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    max-width: 320px;
+  }
+  
+  .memory-card-face {
+    border-width: 3px;
+    border-radius: 15px;
+  }
+  
+  .memory-card-front::after {
+    font-size: 1.8rem;
+  }
+
+  .drawing-workspace {
+    flex-direction: column;
+  }
+
+  .drawing-toolbox {
+    width: 100%;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+  }
+
+  .toolbox-group {
+    flex: 1;
+    min-width: 120px;
+  }
+}

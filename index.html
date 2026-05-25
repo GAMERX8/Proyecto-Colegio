@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Docentes Creativos e Innovadores - Nivel Inicial</title>
+  <meta name="description"
+    content="Portal educativo interactivo para niños de educación inicial. Cuentos, videos, juegos divertidos y programación para niños.">
+
+  <!-- Estilos base y de componentes -->
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/cuentos.css">
+  <link rel="stylesheet" href="css/videos.css">
+  <link rel="stylesheet" href="css/juegos.css">
+  <link rel="stylesheet" href="css/programacion.css">
+</head>
+
+<body>
+
+  <!-- Nubes y arcoíris de fondo -->
+  <div class="sky-decorations" aria-hidden="true">
+    <div class="cloud cloud-1"></div>
+    <div class="cloud cloud-2"></div>
+    <div class="cloud cloud-3"></div>
+    <div class="rainbow-bg"></div>
+  </div>
+
+  <!-- Botón global de sonido interactivo -->
+  <button id="sound-toggle-btn" class="sound-toggle-btn" title="Activar/Desactivar sonido" aria-label="Sonido">
+    <svg viewBox="0 0 24 24" id="volume-icon">
+      <!-- Icono de sonido encendido (por defecto cargamos sonido muteado o activable al clic) -->
+      <path
+        d="M16.5 12c0-1.77-1.02-3.29-2.5-4.03v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77zM3 9v6h4l5 5V4L7 9H3z" />
+    </svg>
+  </button>
+
+  <main class="app-container">
+
+    <!-- Cabecera con Título Estilo Sticker -->
+    <header class="main-header">
+      <img src="assets/sparkle.svg" class="sparkle-icon sparkle-left" alt="Destello decorativo">
+      <h1 class="main-title" id="main-web-title">
+        <span>Docentes</span>
+        <span>Creativos</span>
+        <span>e</span>
+        <span>Innovadores</span>
+      </h1>
+      <img src="assets/sparkle.svg" class="sparkle-icon sparkle-right" alt="Destello decorativo">
+    </header>
+
+    <!-- Grid de Botones Principales (Copiado de la imagen de referencia) -->
+    <section class="categories-grid" aria-label="Categorías principales de aprendizaje">
+
+      <!-- CUENTOS (Miss Diana) -->
+      <button class="sticker-card card-yellow" id="btn-cuentos" aria-haspopup="dialog" aria-controls="cuentos-overlay">
+        <div class="card-icon-wrapper">
+          <img src="assets/cuentos_icon.png" alt="Dibujo de Oso de Peluche y Libro de Cuentos">
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Cuentos</h2>
+          <span class="card-subtitle">(Miss Diana)</span>
+        </div>
+      </button>
+
+      <!-- VIDEOS (Sonia) -->
+      <button class="sticker-card card-blue" id="btn-videos" aria-haspopup="dialog" aria-controls="videos-overlay">
+        <div class="card-icon-wrapper">
+          <img src="assets/videos_icon.png" alt="Dibujo de Televisor Retro y Niño Feliz">
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Videos</h2>
+          <span class="card-subtitle">(Sonia)</span>
+        </div>
+      </button>
+
+      <!-- JUEGOS (Deysi) -->
+      <button class="sticker-card card-green" id="btn-juegos" aria-haspopup="dialog" aria-controls="juegos-overlay">
+        <div class="card-icon-wrapper">
+          <img src="assets/juegos_icon.png" alt="Dibujo de Bloques ABC, Estrella Sonriente y Rompecabezas">
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Juegos</h2>
+          <span class="card-subtitle">(Deysi)</span>
+        </div>
+      </button>
+
+      <!-- PROGRAMACIÓN (Magaly) -->
+      <button class="sticker-card card-orange" id="btn-programacion" aria-haspopup="dialog"
+        aria-controls="programacion-overlay">
+        <div class="card-icon-wrapper">
+          <img src="assets/programacion_icon.png" alt="Dibujo de Robot y Bloques de Código">
+        </div>
+        <div class="card-info">
+          <h2 class="card-title">Programación</h2>
+          <span class="card-subtitle">(Magaly)</span>
+        </div>
+      </button>
+
+    </section>
+  </main>
+
+  <!-- ==================== OVERLAYS / MODALES SPA ==================== -->
+
+  <!-- 1. MODAL CUENTOS (Miss Diana) -->
+  <div id="cuentos-overlay" class="module-overlay" data-theme="yellow" role="dialog" aria-modal="true"
+    aria-labelledby="cuentos-modal-title">
+    <header class="module-header">
+      <div class="module-title-wrapper">
+        <img src="assets/cuentos_icon.png" class="module-title-icon" alt="">
+        <h2 id="cuentos-modal-title" class="module-title">Cuentos</h2>
+        <span class="module-subtitle">con Miss Diana</span>
+      </div>
+      <button class="back-home-btn btn-close-modal" aria-label="Cerrar modal de Cuentos">
+        <span>🏠 Inicio</span>
+      </button>
+    </header>
+    <div class="module-content" id="cuentos-content-area">
+      <!-- Se inyecta dinámicamente desde JS -->
+    </div>
+  </div>
+
+  <!-- 2. MODAL VIDEOS (Sonia) -->
+  <div id="videos-overlay" class="module-overlay" data-theme="blue" role="dialog" aria-modal="true"
+    aria-labelledby="videos-modal-title">
+    <header class="module-header">
+      <div class="module-title-wrapper">
+        <img src="assets/videos_icon.png" class="module-title-icon" alt="">
+        <h2 id="videos-modal-title" class="module-title">Videos</h2>
+        <span class="module-subtitle">con Sonia</span>
+      </div>
+      <button class="back-home-btn btn-close-modal" aria-label="Cerrar modal de Videos">
+        <span>🏠 Inicio</span>
+      </button>
+    </header>
+    <div class="module-content" id="videos-content-area">
+      <!-- Se inyecta dinámicamente desde JS -->
+    </div>
+  </div>
+
+  <!-- 3. MODAL JUEGOS (Deysi) -->
+  <div id="juegos-overlay" class="module-overlay" data-theme="green" role="dialog" aria-modal="true"
+    aria-labelledby="juegos-modal-title">
+    <header class="module-header">
+      <div class="module-title-wrapper">
+        <img src="assets/juegos_icon.png" class="module-title-icon" alt="">
+        <h2 id="juegos-modal-title" class="module-title">Juegos</h2>
+        <span class="module-subtitle">con Deysi</span>
+      </div>
+      <button class="back-home-btn btn-close-modal" aria-label="Cerrar modal de Juegos">
+        <span>🏠 Inicio</span>
+      </button>
+    </header>
+    <div class="module-content" id="juegos-content-area">
+      <!-- Se inyecta dinámicamente desde JS -->
+    </div>
+  </div>
+
+  <!-- 4. MODAL PROGRAMACIÓN (Magaly) -->
+  <div id="programacion-overlay" class="module-overlay" data-theme="orange" role="dialog" aria-modal="true"
+    aria-labelledby="programacion-modal-title">
+    <header class="module-header">
+      <div class="module-title-wrapper">
+        <img src="assets/programacion_icon.png" class="module-title-icon" alt="">
+        <h2 id="programacion-modal-title" class="module-title">Programación</h2>
+        <span class="module-subtitle">con Magaly</span>
+      </div>
+      <button class="back-home-btn btn-close-modal" aria-label="Cerrar modal de Programación">
+        <span>🏠 Inicio</span>
+      </button>
+    </header>
+    <div class="module-content" id="programacion-content-area">
+      <!-- Se inyecta dinámicamente desde JS -->
+    </div>
+  </div>
+
+  <!-- Carga de Scripts en orden de dependencias para funcionamiento local (CORS friendly) -->
+  <script src="js/cuentos.js"></script>
+  <script src="js/videos.js"></script>
+  <script src="js/juegos.js"></script>
+  <script src="js/programacion.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>
