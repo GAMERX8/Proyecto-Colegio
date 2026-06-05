@@ -4,21 +4,21 @@
 const VIDEOS_DATA = [
   {
     number: 1,
-    name: "Lavarse las manos",
-    desc: "Aprende con Plim Plim",
-    url: "https://www.youtube.com/embed/kK3fL6zG0S4?autoplay=1&mute=0&rel=0&showinfo=0"
+    name: "Yo Me Lavo Así",
+    desc: "Higiene con Plim Plim",
+    url: "https://www.youtube.com/embed/r4473N6Xy5I?autoplay=1&mute=0&rel=0&showinfo=0"
   },
   {
     number: 2,
     name: "Baby Shark Español",
     desc: "Baila con Pinkfong",
-    url: "https://www.youtube.com/embed/XqZsoesa55w?autoplay=1&mute=0&rel=0&showinfo=0"
+    url: "https://www.youtube.com/embed/DCR8xe27x20?autoplay=1&mute=0&rel=0&showinfo=0"
   },
   {
     number: 3,
-    name: "La Vaca Lola",
-    desc: "Canta con La Granja",
-    url: "https://www.youtube.com/embed/dy28TlhE7d8?autoplay=1&mute=0&rel=0&showinfo=0"
+    name: "Bartolito",
+    desc: "La Granja de Zenón",
+    url: "https://www.youtube.com/embed/m69Z3J-rTqY?autoplay=1&mute=0&rel=0&showinfo=0"
   }
 ];
 
