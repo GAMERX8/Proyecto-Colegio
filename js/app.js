@@ -198,10 +198,10 @@ document.addEventListener('DOMContentLoaded', () => {
 // Manejo de la Navegación (SPA)
 function setupNavigation() {
   const cards = {
-    'btn-cuentos': { overlay: 'cuentos-overlay', init: initCuentos },
-    'btn-videos': { overlay: 'videos-overlay', init: initVideos },
-    'btn-juegos': { overlay: 'juegos-overlay', init: initJuegos },
-    'btn-programacion': { overlay: 'programacion-overlay', init: initProgramacion }
+    'btn-cuentos': { overlay: 'cuentos-overlay', init: window.initCuentos },
+    'btn-videos': { overlay: 'videos-overlay', init: window.initVideos },
+    'btn-juegos': { overlay: 'juegos-overlay', init: window.initJuegos },
+    'btn-programacion': { overlay: 'programacion-overlay', init: window.initProgramacion }
   };
 
   // Asignar clics a los botones sticker principales
@@ -260,10 +260,10 @@ function closeCurrentModule() {
   window.speechSynthesis.cancel();
 
   // Detener procesos específicos de cada modulo
-  if (state.activeModule === 'cuentos-overlay') closeCuentos();
-  if (state.activeModule === 'videos-overlay') closeVideos();
-  if (state.activeModule === 'juegos-overlay') closeJuegos();
-  if (state.activeModule === 'programacion-overlay') closeProgramacion();
+  if (state.activeModule === 'cuentos-overlay' && typeof window.closeCuentos === 'function') window.closeCuentos();
+  if (state.activeModule === 'videos-overlay' && typeof window.closeVideos === 'function') window.closeVideos();
+  if (state.activeModule === 'juegos-overlay' && typeof window.closeJuegos === 'function') window.closeJuegos();
+  if (state.activeModule === 'programacion-overlay' && typeof window.closeProgramacion === 'function') window.closeProgramacion();
 
   state.activeModule = null;
   document.body.style.overflow = '';
