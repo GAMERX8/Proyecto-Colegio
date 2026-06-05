@@ -6,7 +6,7 @@ const VIDEOS_DATA = [
     number: 1,
     name: "Yo Me Lavo Así",
     desc: "Higiene con Plim Plim",
-    url: "https://www.youtube.com/embed/r4473N6Xy5I?autoplay=1&mute=0&rel=0&showinfo=0"
+    url: "https://www.youtube.com/embed/CzI8oxqjRIs?autoplay=1&mute=0&rel=0&showinfo=0"
   },
   {
     number: 2,
@@ -18,7 +18,7 @@ const VIDEOS_DATA = [
     number: 3,
     name: "Bartolito",
     desc: "La Granja de Zenón",
-    url: "https://www.youtube.com/embed/m69Z3J-rTqY?autoplay=1&mute=0&rel=0&showinfo=0"
+    url: "https://www.youtube.com/embed/4ShOpJPHRxA?autoplay=1&mute=0&rel=0&showinfo=0"
   }
 ];
 
@@ -26,19 +26,19 @@ let tvPoweredOn = true;
 let activeChannelIdx = 0;
 let currentRotationAngle = 0;
 
-window.initVideos = function() {
+window.initVideos = function () {
   const contentArea = document.getElementById('videos-content-area');
   if (!contentArea) return;
 
   renderTvLayout(contentArea);
-  
+
   // Explicación interactiva por voz de Sonia
   setTimeout(() => {
     speakText('¡Hola! Soy Sonia. Bienvenida a mi rincón de videos. Pulsa los botones para cambiar de canal en la tele retro. ¡Disfruta de las canciones!');
   }, 500);
 };
 
-window.closeVideos = function() {
+window.closeVideos = function () {
   // Asegurar que el iframe se borra al cerrar el modal para detener el sonido de fondo
   const screen = document.getElementById('tv-screen-content');
   if (screen) {
@@ -134,7 +134,7 @@ function setupTvEventListeners() {
   // Perilla de Canales
   knob.addEventListener('click', () => {
     if (!tvPoweredOn) return;
-    
+
     // Cambiar secuencialmente al hacer clic en la perilla
     const nextIdx = (activeChannelIdx + 1) % VIDEOS_DATA.length;
     sounds.playPop();
@@ -175,12 +175,12 @@ function toggleTvPower() {
 // Cambiar de canal con efecto estática
 function changeChannel(channelIdx) {
   activeChannelIdx = channelIdx;
-  
+
   const screen = document.getElementById('tv-screen-content');
   const staticLayer = document.getElementById('tv-static-layer');
   const channelBtns = document.querySelectorAll('.channel-btn');
   const knob = document.getElementById('tv-channel-knob');
-  
+
   if (!screen || !tvPoweredOn) return;
 
   // Actualizar clases activas en los botones de canal
@@ -209,7 +209,7 @@ function changeChannel(channelIdx) {
       <div id="tv-static-layer" class="tv-static-noise"></div>
       <iframe src="${currentVideo.url}" allow="autoplay; encrypted-media" allowfullscreen></iframe>
     `;
-    
+
     // Apagar la estática una vez cargado
     const newStatic = document.getElementById('tv-static-layer');
     setTimeout(() => {
