@@ -349,6 +349,76 @@ const CUENTOS_DATA = [
         </svg>`
       }
     ]
+  },
+  {
+    id: 3,
+    title: "La Oruga Soñadora",
+    thumb: `<svg viewBox="0 0 100 100">
+      <circle cx="50" cy="50" r="45" fill="#E8F5E9" stroke="#333" stroke-width="4"/>
+      <!-- Caterpillar -->
+      <circle cx="30" cy="50" r="12" fill="#4CAF50" stroke="#333" stroke-width="3"/>
+      <circle cx="50" cy="50" r="12" fill="#8BC34A" stroke="#333" stroke-width="3"/>
+      <circle cx="70" cy="50" r="14" fill="#4CAF50" stroke="#333" stroke-width="3"/>
+      <!-- Eyes & Smile -->
+      <circle cx="65" cy="46" r="2" fill="#333"/>
+      <circle cx="75" cy="46" r="2" fill="#333"/>
+      <path d="M 67 53 Q 70 56 73 53" fill="none" stroke="#333" stroke-width="2"/>
+    </svg>`,
+    pages: [
+      {
+        text: "Había una vez una pequeña oruga verde. Ella caminaba muy lento por las hojas y soñaba con volar alto, hasta tocar las nubes.",
+        illustration: `<svg viewBox="0 0 200 200">
+          <rect width="200" height="200" fill="#E1F5FE"/>
+          <!-- Leaf -->
+          <path d="M 20 150 Q 100 100 180 150 Q 100 200 20 150 Z" fill="#8BC34A" stroke="#333" stroke-width="4"/>
+          <!-- Caterpillar -->
+          <g transform="translate(60, 110)" stroke="#333" stroke-width="3">
+            <circle cx="20" cy="20" r="12" fill="#4CAF50"/>
+            <circle cx="40" cy="20" r="12" fill="#8BC34A"/>
+            <circle cx="60" cy="20" r="14" fill="#4CAF50"/>
+            <!-- Face -->
+            <circle cx="55" cy="16" r="2" fill="#222"/>
+            <circle cx="65" cy="16" r="2" fill="#222"/>
+            <path d="M 57 24 Q 60 27 63 24" fill="none" stroke-width="2"/>
+          </g>
+        </svg>`
+      },
+      {
+        text: "Un día, se envolvió en una mantita mágica de seda y se durmió profundamente. Pasó mucho tiempo descansando al sol.",
+        illustration: `<svg viewBox="0 0 200 200">
+          <rect width="200" height="200" fill="#FFF9C4"/>
+          <!-- Branch -->
+          <path d="M -20 100 Q 100 80 220 100" fill="none" stroke="#795548" stroke-width="15" stroke-linecap="round"/>
+          <!-- Cocoon -->
+          <ellipse cx="100" cy="140" rx="20" ry="35" fill="#F5F5F5" stroke="#333" stroke-width="4"/>
+          <!-- Sun -->
+          <circle cx="40" cy="40" r="20" fill="#FFC107"/>
+          <path d="M 40 10 L 40 5 M 40 75 L 40 80 M 10 40 L 5 40 M 75 40 L 80 40" stroke="#FFC107" stroke-width="4" stroke-linecap="round"/>
+        </svg>`
+      },
+      {
+        text: "Al despertar, ¡sorpresa! Tenía unas hermosas alas de colores. Ahora era una mariposa y por fin podía volar hacia el cielo azul.",
+        illustration: `<svg viewBox="0 0 200 200">
+          <rect width="200" height="200" fill="#81D4FA"/>
+          <!-- Clouds -->
+          <path d="M 30 50 Q 50 30 70 50 Q 90 50 70 70 Q 30 70 30 50 Z" fill="#FFF"/>
+          <!-- Butterfly -->
+          <g transform="translate(100, 100)" stroke="#333" stroke-width="3">
+            <!-- Wings -->
+            <path d="M 0 0 C 40 -40, 60 20, 0 20 C 40 60, 20 60, 0 20 C -20 60, -40 60, 0 20 C -60 20, -40 -40, 0 0 Z" fill="#E040FB"/>
+            <!-- Body -->
+            <ellipse cx="0" cy="10" rx="6" ry="20" fill="#4CAF50"/>
+            <!-- Face -->
+            <circle cx="-3" cy="0" r="2" fill="#222"/>
+            <circle cx="3" cy="0" r="2" fill="#222"/>
+            <path d="M -2 6 Q 0 8 2 6" fill="none" stroke-width="1.5"/>
+            <!-- Antennae -->
+            <path d="M -3 -8 Q -10 -15 -12 -10" fill="none"/>
+            <path d="M 3 -8 Q 10 -15 12 -10" fill="none"/>
+          </g>
+        </svg>`
+      }
+    ]
   }
 ];
 
