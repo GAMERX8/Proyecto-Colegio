@@ -72,6 +72,7 @@ window.initJuegos = function() {
 window.closeJuegos = function() {
   stopBalloonGame();
   stopDrawingGame();
+  stopMoleGame();
   activeGameId = null;
 };
 
@@ -99,6 +100,12 @@ function renderGamesSelector(container) {
           <h3 class="game-card-title">Pizarra Mágica</h3>
         </div>
 
+        <!-- JUEGO 4: ATRAPA AL TOPO -->
+        <div class="game-select-card" data-game="topo" role="button" tabindex="0">
+          <div class="game-card-thumb">🐹</div>
+          <h3 class="game-card-title">Atrapa al Topo</h3>
+        </div>
+
       </div>
     </div>
   `;
@@ -124,6 +131,8 @@ function startSelectedGame(gameKey) {
     initBalloonGame(container);
   } else if (gameKey === 'pizarra') {
     initDrawingGame(container);
+  } else if (gameKey === 'topo') {
+    initMoleGame(container);
   }
 }
 
@@ -662,3 +671,104 @@ function stopDrawingGame() {
   window.removeEventListener('resize', resizeCanvas);
   drawingHistory = [];
 }
+
+/* ==========================================
+   4. ATRAPA AL TOPO (WHACK-A-MOLE)
+   ========================================== */
+let moleScore = 0;
+let moleInterval = null;
+let currentMoleHole = null;
+
+function initMoleGame(container) {
+  moleScore = 0;
+  
+  container.innerHTML = `
+    <div class="juegos-wrapper">
+      <div class="active-game-viewport">
+        
+        <div class="game-header-bar">
+          <button class="control-btn btn-back-selector" id="btn-game-back">
+            <span>🎮 Otros Juegos</span>
+          </button>
+          <div class="game-hud-item" id="mole-score-hud">Topos: 0</div>
+          <button class="control-btn btn-prev" id="btn-mole-reset">
+            <span>🔄 Reiniciar</span>
+          </button>
+        </div>
+
+        <!-- Área de Juego -->
+        <div class="mole-game-area">
+          <div class="mole-hole" id="hole-0"><div class="mole">🐹</div></div>
+          <div class="mole-hole" id="hole-1"><div class="mole">🐹</div></div>
+          <div class="mole-hole" id="hole-2"><div class="mole">🐹</div></div>
+          <div class="mole-hole" id="hole-3"><div class="mole">🐹</div></div>
+          <div class="mole-hole" id="hole-4"><div class="mole">🐹</div></div>
+          <div class="mole-hole" id="hole-5"><div class="mole">🐹</div></div>
+        </div>
+
+      </div>
+    </div>
+  `;
+
+  document.getElementById('btn-game-back').addEventListener('click', backToGamesMenu);
+  document.getElementById('btn-mole-reset').addEventListener('click', () => {
+    sounds.playPop();
+    stopMoleGame();
+    initMoleGame(container);
+  });
+
+  const moles = container.querySelectorAll('.mole');
+  moles.forEach(mole => {
+    mole.addEventListener('click', () => {
+      whackMole(mole);
+    });
+    mole.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      whackMole(mole);
+    });
+  });
+
+  moleInterval = setInterval(spawnMole, 1000);
+  speakText('¡Atrapa al topo! Toca rápido a los topos cuando se asomen por sus agujeros.');
+}
+
+function spawnMole() {
+  if (activeGameId !== 'topo') return;
+
+  const holes = document.querySelectorAll('.mole-hole');
+  if (holes.length === 0) return;
+
+  // Ocultar al topo actual si lo hay
+  holes.forEach(hole => hole.classList.remove('up'));
+
+  // Escoger un nuevo agujero al azar, que no sea el mismo que el anterior
+  let randomIdx;
+  do {
+    randomIdx = Math.floor(Math.random() * holes.length);
+  } while (currentMoleHole === randomIdx && holes.length > 1);
+
+  currentMoleHole = randomIdx;
+  const targetHole = holes[randomIdx];
+  targetHole.classList.add('up');
+}
+
+function whackMole(mole) {
+  if (!mole.parentNode.classList.contains('up')) return;
+  
+  mole.parentNode.classList.remove('up');
+  sounds.playPop();
+  
+  moleScore++;
+  const scoreHud = document.getElementById('mole-score-hud');
+  if (scoreHud) {
+    scoreHud.textContent = `Topos: ${moleScore}`;
+  }
+}
+
+function stopMoleGame() {
+  if (moleInterval) {
+    clearInterval(moleInterval);
+    moleInterval = null;
+  }
+}
+

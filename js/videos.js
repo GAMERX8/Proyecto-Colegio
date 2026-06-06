@@ -19,6 +19,12 @@ const VIDEOS_DATA = [
     name: "Bartolito",
     desc: "La Granja de Zenón",
     url: "https://www.youtube.com/embed/4ShOpJPHRxA?autoplay=1&mute=0&rel=0&showinfo=0"
+  },
+  {
+    number: 4,
+    name: "Peppa Pig",
+    desc: "Cerdita Peppa",
+    url: "https://www.youtube.com/embed/n0f0iE3U5l8?autoplay=1&mute=0&rel=0&showinfo=0"
   }
 ];
 
